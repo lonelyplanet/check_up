@@ -38,7 +38,11 @@ defmodule CheckUp do
   end
 
   defp add_attributes(map, info) do
-    Map.put(map, :attributes, %{
+    map
+    |> update_in([:data], &(&1 || %{}))
+    |> put_in([:data, :id], info.service_id)
+    |> put_in([:data, :type], "op-service")
+    |> put_in([:data, :attributes], %{
       "lp-service-group-id" => "open-planet",
       "lp-service-id" => info.service_id,
       "github-repo-name" => info.repo_name,
@@ -57,7 +61,10 @@ defmodule CheckUp do
 
   defp add_relations(map, info) do
     dependencies = Enum.map(info.dependencies, &Map.take(&1, [:id, :type]))
-    Map.put(map, :relationships, %{ dependencies: %{ data: dependencies } })
+
+    map
+    |> update_in([:data], &(&1 || %{}))
+    |> put_in([:data, :relationships], %{ dependencies: %{ data: dependencies } })
   end
   
   defp handle_include(map, info, %{"include"=>"dependencies"}) do
