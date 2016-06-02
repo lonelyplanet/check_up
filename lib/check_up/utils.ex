@@ -12,7 +12,6 @@ defmodule CheckUp.Utils do
       any -> any
     end
 
-    URI.to_string(%URI{host: conn.host, path: conn.request_path,
-                       port: conn.port, query: query, scheme: scheme})
+    URI.to_string(%URI{path: conn.request_path, query: query})
   end
 end

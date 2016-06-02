@@ -21,7 +21,7 @@ defmodule CheckUpTest do
 
     assert conn.state == :sent
     assert conn.status == 200
-    assert resp["links"]["self"] == "http://www.example.com/health-check"
+    assert resp["links"]["self"] == "/health-check"
     assert resp["data"]["id"] == "some-id"
     assert resp["data"]["type"] == "op-service"
     assert resp["data"]["attributes"]["contact-info"]["service-owner-slackid"] == "@developer-handle"
