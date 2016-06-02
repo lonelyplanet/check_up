@@ -68,7 +68,7 @@ defmodule CheckUp do
   end
   
   defp handle_include(map, info, %{"include"=>"dependencies"}) do
-    Map.put(map, :include, Enum.map(info.dependencies, &report_dependency/1))
+    Map.put(map, :included, Enum.map(info.dependencies, &report_dependency/1))
   end
   defp handle_include(map, _info, _params), do: map
 
