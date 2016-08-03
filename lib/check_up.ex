@@ -84,6 +84,18 @@ defmodule CheckUp do
     })
   end
 
+  defp report_dependency(dep = %{status: status}) do
+    status = status.()
+
+    dep
+    |> Map.take([:id, :type])
+    |> Map.put(:attributes, %{
+      location: status.location,
+      status: status.status,
+      description: status.description
+    })
+  end
+
   defp test_db_connection(repo) do
     try do
       case Ecto.Adapters.SQL.query!(repo, "SELECT true", []) do
