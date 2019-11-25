@@ -16,8 +16,8 @@ defmodule CheckUp.Mixfile do
 
   defp deps do
     [
-      {:poison, "> 0.0.0"},
-      {:plug, "> 1.0.0"}
+      {:poison, "~> 4.0"},
+      {:plug, "~> 1.8"}
     ]
   end
 end

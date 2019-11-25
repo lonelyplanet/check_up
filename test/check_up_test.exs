@@ -17,7 +17,7 @@ defmodule CheckUpTest do
 
   test "that it works" do
     conn = conn(:get, "/health-check") |> CheckUp.call(@standard_opts)
-    resp = conn.resp_body |> Poison.Parser.parse!
+    resp = conn.resp_body |> Poison.Parser.parse!(%{})
 
     assert conn.state == :sent
     assert conn.status == 200
